@@ -11,10 +11,12 @@ from main import build_telegram_application
 async def process_payload(payload):
     application = build_telegram_application()
     await application.initialize()
+    await application.start()
     try:
         update = Update.de_json(payload, application.bot)
         await application.process_update(update)
     finally:
+        await application.stop()
         await application.shutdown()
 
 
@@ -46,5 +48,9 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
+        body = b'{"ok":true,"service":"telegram-webhook"}'
         self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
         self.end_headers()
+        self.wfile.write(body)
