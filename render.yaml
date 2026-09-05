@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: shadan-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --bind 0.0.0.0:$PORT wsgi:app
+    healthCheckPath: /
+    envVars:
+      - key: SHADAN_BOT_TOKEN
+        sync: false
+      - key: SHADAN_ADMIN_ID
+        sync: false
+      - key: SHADAN_ADMIN_GROUP_ID
+        sync: false
+      - key: SHADAN_CHANNEL_USERNAME
+        value: "@forsaaIQ"
+      - key: SHADAN_SUBSCRIPTION_CHANNEL
+        value: "@forsaaIQ"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SHADAN_PUBLIC_BASE_URL
+        sync: false
