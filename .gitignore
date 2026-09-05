@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+shadan_database.db
+database/jobs_database.db
+.pycache_tmp/
