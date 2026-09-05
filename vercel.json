@@ -7,14 +7,8 @@
   },
   "crons": [
     {
-      "path": "/api/cron.py",
+      "path": "/api/cron",
       "schedule": "0 * * * *"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/telegram",
-      "destination": "/api/telegram.py"
     }
   ]
 }
